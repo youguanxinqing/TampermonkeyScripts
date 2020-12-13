@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         极客时间深色主题
 // @namespace    http://youguanxinqing.xyz/
-// @version      0.1
+// @version      0.3
 // @description  Change Color During Reading!
 // @author       youguanxinqing
 // @match        https://time.geekbang.org/column/article/*
