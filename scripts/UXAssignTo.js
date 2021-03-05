@@ -13,6 +13,17 @@
 
 window.specifiedSelectOptionsMap = new Map()
 
+window.clickSuggestionLabel = function(event, that) {
+    let name = $(that).html()
+    let id = specifiedSelectOptionsMap.get(name)
+    $('#issue_assigned_to_id').val(id)
+
+    event.preventDefault()
+
+    $('#specified-suggestion').remove()
+    $('#specified-input').remove()
+}
+
 window.getSpecifiedInputContent = function () {
     let content = $('#specified-input').val()
     if (content === '') {
@@ -22,7 +33,7 @@ window.getSpecifiedInputContent = function () {
     let names = new Array()
     for (let name of specifiedSelectOptionsMap.keys()) {
         if (name.startsWith(content)) {
-            names.push(name)
+            names.push('<em value=\'10\' onclick=\'clickSuggestionLabel(event, this)\'>' + name + '</em>')
         }
     }
 
@@ -64,4 +75,3 @@ $('#specified-box').bind('click', function(event) {
     $(this).after('<p id=\'specified-suggestion\' style=\'padding-left:0px\'>可能是:</p><input id=\'specified-input\' type=\'text\' oninput=\'getSpecifiedInputContent()\' onkeydown=\'if(event.keyCode==13){enterSpecifiedInput(event, this)}\'/>')
     event.preventDefault()
 })
-
