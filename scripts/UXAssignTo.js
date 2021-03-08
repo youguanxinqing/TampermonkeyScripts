@@ -14,7 +14,7 @@
 window.specifiedSelectOptionsMap = new Map()
 
 window.clickSuggestionLabel = function(event, that) {
-    let name = $(that).html()
+    let name = $(that).text()
     let id = specifiedSelectOptionsMap.get(name)
     $('#issue_assigned_to_id').val(id)
 
@@ -33,7 +33,7 @@ window.getSpecifiedInputContent = function () {
     let names = new Array()
     for (let name of specifiedSelectOptionsMap.keys()) {
         if (name.startsWith(content)) {
-            names.push('<em value=\'10\' onclick=\'clickSuggestionLabel(event, this)\'>' + name + '</em>')
+            names.push('<span value=\'10\' onclick=\'clickSuggestionLabel(event, this)\' style=\'cursor:pointer\' >' + name + '</span>')
         }
     }
 
@@ -64,8 +64,8 @@ $('#issue_assigned_to_id').after("<button id='specified-box' style='margin-left:
 
 $('#specified-box').bind('click', function(event) {
     $('#issue_assigned_to_id option').each(function() {
-        if (!$(this).html().startsWith('成都')) {
-            let name = $(this).html().replace(/\s+/, '')
+        if (!$(this).text().startsWith('成都')) {
+            let name = $(this).text().replace(/\s+/, '')
             let id = $(this).val()
             if (id !== '') {
                 specifiedSelectOptionsMap.set(name, id)
